@@ -1078,7 +1078,7 @@ body.landing-mode .content{
 .hero {
   position: relative;
   min-height: 100vh;
-  background-image: url("./zuppports-hero.png") !important;
+  background-image: url("/DemoPro/zuppports-hero.png") !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
