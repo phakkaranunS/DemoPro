@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZUPPORTS LearnFlow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand-wrap">
+      <img src="zupports-logo.png" alt="โลโก้ ZUPPORTS" class="brand-logo" onclick="goPage('home')" role="button" tabindex="0">
+    </div>
+
+    <nav class="side-nav">
+      <button class="active" data-page="home">⌂ <span>หน้าหลัก</span></button>
+      <button data-page="overview">◉ <span>Incoterms คืออะไร</span></button>
+      <button data-page="learn">▤ <span>เรียนรู้แต่ละเทอม</span></button>
+      <button data-page="glossary">◫ <span>คำศัพท์อังกฤษ–ไทย</span></button>
+      <button data-page="pretest">✓ <span>แบบทดสอบก่อนเรียน</span></button>
+      <button data-page="posttest">✓ <span>แบบทดสอบหลังเรียน</span></button>
+      <button data-page="progress">▥ <span>ผลการเรียน</span></button>
+      <button data-page="settings">⚙ <span>ตั้งค่าบัญชี</span></button>
+    </nav>
+
+    <div class="side-bottom">? <span>ช่วยเหลือ</span></div>
+  </aside>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="steps">
+        <div class="step active" id="step1"><b>1</b><span>เรียนรู้</span></div>
+        <i></i>
+        <div class="step" id="step2"><b>2</b><span>Pre-test</span></div>
+        <i></i>
+        <div class="step" id="step3"><b>3</b><span>เรียนทีละเทอม</span></div>
+        <i></i>
+        <div class="step" id="step4"><b>4</b><span>Post-test</span></div>
+        <i></i>
+        <div class="step" id="step5"><b>5</b><span>ผลการเรียน</span></div>
+      </div>
+      <div class="user">
+        <span id="userEmail">Private User</span>
+        <button id="loginBtn" class="link-btn">เข้าสู่ระบบ</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <section id="home" class="page hero-home">
+        <header class="site-header">
+          <button class="header-brand" onclick="goPage('home')" aria-label="กลับหน้าหลัก">
+            <img src="zupports-logo.png" alt="โลโก้บริษัท ZUPPORTS">
+            <div class="header-brand-copy">
+              <b>ZUPPORTS LEARNFLOW</b>
+              <small>Smart Learning Platform for Global Trade & Logistics</small>
+            </div>
+          </button>
+
+          <button class="mobile-menu-button" id="mobileMenuButton" aria-label="เปิดเมนู" aria-expanded="false" onclick="toggleMobileMenu()">☰</button>
+
+          <nav class="main-navigation" id="mainNavigation" aria-label="เมนูหลัก">
+            <button class="active" onclick="goPage('home')">หน้าหลัก</button>
+            <button onclick="requireLogin('overview')">Incoterms คืออะไร</button>
+            <button onclick="requireLogin('learn')">เรียนรู้แต่ละเทอม</button>
+            <button onclick="requireLogin('pretest')">แบบทดสอบ</button>
+            <button onclick="requireLogin('progress')">ผลการเรียน</button>
+          </nav>
+
+          <div class="header-actions">
+            <button class="settings-header-button" onclick="requireLogin('settings')" aria-label="ตั้งค่า">⚙ <span>ตั้งค่า</span></button>
+            <button class="language-header-button" onclick="toggleLandingLanguage()" aria-label="เปลี่ยนภาษา">
+              <span>🌐</span><b id="landingLangLabel">TH / EN</b><i>⌄</i>
+            </button>
+            <button class="profile-header-button" onclick="handleProfileButton()">
+              <span id="landingUserIcon">👤</span>
+              <b id="landingLoginText">เข้าสู่ระบบ</b>
+            </button>
+          </div>
+        </header>
+
+        <section class="hero" aria-labelledby="heroTitle">
+          <div class="hero-content">
+            <span class="hero-eyebrow">ZUPPORTS LEARNFLOW</span>
+            <h1 id="heroTitle">ZUPPORTS LEARNFLOW</h1>
+            <h2>ระบบเรียนรู้และจำลองการตัดสินใจ Incoterms 2020</h2>
+            <p>เรียนรู้ Incoterms ผ่านบทเรียนแบบโต้ตอบ สถานการณ์จำลอง และแบบทดสอบก่อน–หลังเรียน</p>
+            <div class="hero-actions">
+              <button class="hero-primary-button" onclick="requireLogin('overview')">เริ่มเรียน</button>
+              <button class="hero-secondary-button" onclick="requireLogin('overview')">ดูภาพรวมระบบ</button>
+            </div>
+          </div>
+        </section>
+
+        <footer class="hero-footer">Powered by <b>ZUPPORTS</b></footer>
+      </section>
+
+      <section id="overview" class="page hidden">
+        <div class="overview-hero">
+          <div class="overview-copy">
+            <span class="eyebrow">INCOTERMS® 2020</span>
+            <h2>Incoterms® คืออะไร?</h2>
+            <p>
+              <b>Incoterms® (International Commercial Terms)</b> คือกติกาสากลที่ใช้กำหนดว่า
+              ผู้ขายและผู้ซื้อมีหน้าที่อะไร ใครเป็นผู้จ่ายค่าใช้จ่าย และความเสี่ยงโอนจากฝ่ายหนึ่งไปอีกฝ่ายเมื่อใด
+              ในการซื้อขายสินค้า
+            </p>
+            <div class="definition-pills">
+              <span>👤 หน้าที่</span><span>💰 ค่าใช้จ่าย</span><span>⚠️ ความเสี่ยง</span><span>📍 จุดส่งมอบ</span>
+            </div>
+          </div>
+          <div class="overview-scene">
+            <div class="sky-plane">✈️</div>
+            <div class="scene-label seller-label">ผู้ขาย (SELLER)</div>
+            <div class="scene-label buyer-label">ผู้ซื้อ (BUYER)</div>
+            <div class="scene-line">
+              <div>🏭<small>โรงงาน</small></div><i></i>
+              <div>🚚<small>รถขนส่ง</small></div><i></i>
+              <div>🏗️<small>ท่าเรือ</small></div><i></i>
+              <div class="ship-big">🚢<small>ขนส่งหลัก</small></div><i></i>
+              <div>🏢<small>คลังผู้ซื้อ</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overview-divider"></div>
+
+        <h3 class="overview-title">Incoterms แบ่งการเดินทางของสินค้าออกเป็น 3 ส่วนหลัก</h3>
+        <div class="overview-flow">
+          <article class="flow-phase origin-phase">
+            <div class="flow-phase-head"><b>1</b><div><h3>ต้นทาง (ORIGIN)</h3><p>ช่วงก่อนสินค้าออกจากประเทศผู้ขาย</p></div></div>
+            <div class="flow-icons">
+              <div>🏭<span>โรงงาน / คลังสินค้า</span></div>
+              <div>🚚<span>ขนส่งภายในประเทศ</span></div>
+              <div>🛃<span>พิธีการศุลกากรขาออก</span></div>
+            </div>
+          </article>
+          <article class="flow-phase freight-phase">
+            <div class="flow-phase-head"><b>2</b><div><h3>การขนส่งหลัก (FREIGHT)</h3><p>การขนส่งระหว่างประเทศ</p></div></div>
+            <div class="flow-icons">
+              <div>⚓<span>ท่าเรือต้นทาง</span></div>
+              <div>🚢<span>เรือ / อากาศ / รูปแบบอื่น</span></div>
+              <div>⚓<span>ท่าเรือปลายทาง</span></div>
+            </div>
+          </article>
+          <article class="flow-phase destination-phase">
+            <div class="flow-phase-head"><b>3</b><div><h3>ปลายทาง (DESTINATION)</h3><p>ช่วงหลังสินค้าถึงประเทศผู้ซื้อ</p></div></div>
+            <div class="flow-icons">
+              <div>🛃<span>พิธีการศุลกากรขาเข้า</span></div>
+              <div>🚚<span>ขนส่งภายในประเทศ</span></div>
+              <div>🏢<span>คลังสินค้าผู้ซื้อ</span></div>
+            </div>
+          </article>
+        </div>
+
+        <h3 class="overview-title terms-title">Incoterms® ทั้ง 11 Terms แบ่งตามรูปแบบการขนส่ง</h3>
+        <div class="overview-term-groups">
+          <div class="overview-term-group">
+            <div class="group-tab blue-tab">การขนส่งทุกประเภท</div>
+            <div id="overviewAllMode" class="overview-term-cards"></div>
+          </div>
+          <div class="overview-term-group">
+            <div class="group-tab green-tab">ทางทะเลและทางน้ำเท่านั้น</div>
+            <div id="overviewSeaMode" class="overview-term-cards sea-overview"></div>
+          </div>
+        </div>
+
+        <div class="obsolete-box">
+          <h3>คำย่อจาก Incoterms ฉบับเก่าที่อาจพบในข้อสอบ</h3>
+          <div class="obsolete-grid">
+            <div><b>DDU — Delivered Duty Unpaid</b><p>ไม่มีใน Incoterms 2020 เดิมหมายถึงผู้ขายส่งถึงปลายทาง แต่ผู้ซื้อรับผิดชอบอากรนำเข้า โดยใน Incoterms 2010 มีการใช้ <b>DAP</b> แทนแนวคิดนี้เพื่อทำให้กติกาชัดเจนและใช้ได้กับสถานที่ปลายทางที่กว้างขึ้น</p></div>
+            <div><b>DAT — Delivered at Terminal</b><p>เปลี่ยนชื่อเป็น <b>DPU — Delivered at Place Unloaded</b> ใน Incoterms 2020 เพราะคำว่า Terminal จำกัดสถานที่เกินไป ขณะที่ DPU ใช้กับสถานที่ปลายทางใดก็ได้และยังคงกำหนดให้ผู้ขายขนลงสินค้า</p></div>
+            <div><b>DEQ — Delivered Ex Quay</b><p>ถูกยกเลิกตั้งแต่ Incoterms 2010 และรวมแนวคิดเข้าสู่กฎ <b>DAT/DAP</b> เพื่อให้เหลือกฎที่ใช้ง่ายและรองรับหลายรูปแบบการขนส่งมากขึ้น</p></div>
+          </div>
+        </div>
+
+        <div class="overview-tip">💡 จำง่าย: Incoterms ไม่ได้บอกราคาสินค้าหรือวิธีชำระเงิน แต่บอกว่า “ใครทำอะไร ใครจ่ายอะไร และความเสี่ยงโอนที่จุดใด”</div>
+      </section>
+
+      <section id="allterms" class="page hidden">
+        <div class="page-head">
+          <span class="eyebrow">STEP 2</span>
+          <h2>ภาพรวม Incoterms ทั้ง 11 Terms</h2>
+        </div>
+        <div class="category-block">
+          <h3>ใช้ได้กับการขนส่งทุกประเภท</h3>
+          <div id="allModeCards" class="cards"></div>
+        </div>
+        <div class="category-block sea">
+          <h3>ใช้กับการขนส่งทางทะเลและทางน้ำ</h3>
+          <div id="seaCards" class="cards sea-cards"></div>
+        </div>
+      </section>
+
+      <section id="learn" class="page hidden">
+        <div class="page-head">
+          <span class="eyebrow">STEP 3</span>
+          <h2>เรียนรู้แต่ละ Term แบบเห็นภาพ</h2>
+        </div>
+
+        <div class="learn-layout">
+          <aside id="termMenu" class="term-menu"></aside>
+          <article class="detail-card">
+            <div class="detail-head">
+              <div>
+                <span id="termGroup" class="chip"></span>
+                <h2 id="termTitle"></h2>
+                <p id="termDesc"></p>
+              </div>
+              <div class="simulation-action">
+                <button class="secondary" onclick="animateBox()">▶ ดูจุดโอนความเสี่ยง</button>
+                <small>กดเพื่อดูว่าสินค้าเดินทางจาก Seller ไปถึงจุดที่ Risk เปลี่ยนเป็น Buyer ตรงไหน</small>
+              </div>
+            </div>
+
+            <div class="legend">
+              <span><i class="seller-dot"></i>Seller</span>
+              <span><i class="buyer-dot"></i>Buyer</span>
+              <span><i class="risk-dot"></i>Risk Transfer (จุดโอนความเสี่ยง)</span>
+            </div>
+
+            <div class="simulation">
+              <div id="movingBox" class="moving-box">📦</div>
+              <div id="flowMap" class="flow-map"></div>
+            </div>
+            <div id="simulationStatus" class="simulation-status">เลือก Term แล้วกด “ดูจุดโอนความเสี่ยง” เพื่อช่วยจำจุดส่งมอบ</div>
+
+            <div class="facts">
+              <div><small>คำเต็ม</small><b id="fullName"></b></div>
+              <div><small>Freight (ค่าขนส่งหลัก)</small><b id="freight"></b></div>
+              <div><small>Insurance (ประกันภัยสินค้า)</small><b id="insurance"></b></div>
+              <div><small>Import Duty (อากรนำเข้า)</small><b id="duty"></b></div>
+            </div>
+
+            <div class="two-col">
+              <div class="seller-box"><h3>Seller (ผู้ขาย) รับผิดชอบ</h3><p id="sellerDuty"></p></div>
+              <div class="buyer-box"><h3>Buyer (ผู้ซื้อ) รับผิดชอบ</h3><p id="buyerDuty"></p></div>
+            </div>
+
+            <div class="term-vocabulary">
+              <div class="term-vocab-head">
+                <span>🧠</span>
+                <div><small>KEY VOCABULARY</small><h3>คำศัพท์ที่ควรรู้ใน Term นี้</h3></div>
+              </div>
+              <div id="termVocabulary" class="term-vocab-grid"></div>
+            </div>
+            <div class="example"><h3>ตัวอย่างสถานการณ์</h3><p id="example"></p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="glossary" class="page hidden">
+        <div class="page-head">
+          <span class="eyebrow">SMART GLOSSARY</span>
+          <h2>คำศัพท์ Incoterms อังกฤษ–ไทย</h2>
+          <p>รวมคำศัพท์สำคัญในบทเรียนและข้อสอบ พร้อมคำแปลและคำอธิบายแบบเข้าใจง่าย</p>
+        </div>
+        <div class="glossary-toolbar">
+          <input id="glossarySearch" type="text" placeholder="ค้นหา เช่น Risk, Freight, ผู้ซื้อ..." oninput="renderGlossary(this.value)">
+          <div class="glossary-note">กดหรือชี้ที่ศัพท์ในบทเรียนเพื่อดูคำแปล</div>
+        </div>
+        <div id="glossaryGrid" class="glossary-grid"></div>
+      </section>
+
+      <section id="pretest" class="page hidden">
+        <div class="page-head">
+          <span class="eyebrow">PRE-TEST</span>
+          <h2>แบบทดสอบก่อนเรียน</h2>
+          <p>ระบบจะบันทึกคะแนนไว้เพื่อเปรียบเทียบหลังเรียน</p>
+        </div>
+        <div id="preStart" class="start-card">
+          <h3>เลือกจำนวนข้อสำหรับ Pre-test</h3>
+          <div class="count-options" id="preCountOptions">
+            <button class="count-btn selected" onclick="selectCount('pre',10,this)">10 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('pre',20,this)">20 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('pre',30,this)">30 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('pre',40,this)">40 ข้อ</button>
+          </div>
+          <p class="random-note">ผู้เรียนแต่ละคนจะได้รับลำดับคำถามและตัวเลือกที่สุ่มต่างกัน</p>
+          <button class="primary" onclick="startQuiz('pre')">เริ่มทำ Pre-test</button>
+        </div>
+        <div id="preQuiz" class="quiz hidden"></div>
+      </section>
+
+      <section id="posttest" class="page hidden">
+        <div class="page-head">
+          <span class="eyebrow">POST-TEST</span>
+          <h2>แบบทดสอบหลังเรียน</h2>
+          <p>ใช้รูปแบบเดียวกับ Pre-test เพื่อให้เปรียบเทียบผลได้</p>
+        </div>
+        <div id="postStart" class="start-card">
+          <h3>เลือกจำนวนข้อสำหรับ Post-test</h3>
+          <div class="count-options" id="postCountOptions">
+            <button class="count-btn selected" onclick="selectCount('post',10,this)">10 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('post',20,this)">20 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('post',30,this)">30 ข้อ</button>
+            <button class="count-btn" onclick="selectCount('post',40,this)">40 ข้อ</button>
+          </div>
+          <p class="random-note">Post-test จะพยายามหลีกเลี่ยงข้อที่ผู้ใช้คนเดิมเจอใน Pre-test</p>
+          <button class="primary" onclick="startQuiz('post')">เริ่มทำ Post-test</button>
+        </div>
+        <div id="postQuiz" class="quiz hidden"></div>
+      </section>
+
+      <section id="progress" class="page hidden">
+        <div class="report-hero">
+          <div>
+            <span class="eyebrow">LEARNING PROGRESS EVOLUTION</span>
+            <h2>พัฒนาการเรียนรู้ของคุณ</h2>
+            <p>ระบบเปรียบเทียบ Pre-test และ Post-test พร้อมวิเคราะห์จุดแข็ง จุดที่ควรทบทวน และคำแนะนำเฉพาะบุคคล</p>
+          </div>
+          <div id="rankHero" class="rank-hero">
+            <div id="rankEmoji" class="rank-emoji">🌱</div>
+            <div>
+              <small>YOUR CURRENT RANK</small>
+              <h3 id="rankName">Incoterms Beginner</h3>
+              <p id="rankRange">คะแนนหลังเรียนต่ำกว่า 60%</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="evolution-card">
+          <div class="evolution-head">
+            <div>
+              <small>คะแนนก่อนเรียน</small>
+              <strong id="preScore">-</strong>
+            </div>
+            <div class="evolution-arrow">
+              <span>Learning Evolution</span>
+              <div class="evolution-line"><i id="evolutionFill"></i></div>
+              <b id="improve">-</b>
+            </div>
+            <div>
+              <small>คะแนนหลังเรียน</small>
+              <strong id="postScore">-</strong>
+            </div>
+          </div>
+
+          <div class="rank-path">
+            <div id="rankBeginner" class="rank-step">
+              <span>🌱</span><b>Beginner</b><small>&lt; 60%</small>
+            </div>
+            <i></i>
+            <div id="rankExplorer" class="rank-step">
+              <span>🚢</span><b>Explorer</b><small>60–79%</small>
+            </div>
+            <i></i>
+            <div id="rankMaster" class="rank-step">
+              <span>🏆</span><b>Master</b><small>80–100%</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="learning-report-grid">
+          <article class="report-panel">
+            <div class="panel-head">
+              <span>📊</span>
+              <div><small>UNDERSTANDING LEVEL</small><h3>ระดับความเข้าใจ</h3></div>
+            </div>
+            <div id="understandingLevel" class="understanding-level">ยังไม่มีผลการทดสอบหลังเรียน</div>
+            <div class="level-meter"><i id="levelMeterFill"></i></div>
+          </article>
+
+          <article class="report-panel ai-panel">
+            <div class="panel-head">
+              <span>✨</span>
+              <div><small>AI FEEDBACK</small><h3>คำแนะนำเฉพาะบุคคล</h3></div>
+            </div>
+            <p id="aiFeedback">ทำ Pre-test และ Post-test ให้ครบ เพื่อรับคำแนะนำเฉพาะบุคคล</p>
+          </article>
+        </div>
+
+        <div class="topic-report">
+          <article class="topic-card strong-card">
+            <div class="topic-title"><span>✅</span><h3>หัวข้อที่ทำได้ดี</h3></div>
+            <div id="strongTopics" class="topic-list"><span>ยังไม่มีข้อมูล</span></div>
+          </article>
+          <article class="topic-card review-card">
+            <div class="topic-title"><span>📚</span><h3>หัวข้อที่ควรทบทวน</h3></div>
+            <div id="reviewTopics" class="topic-list"><span>ยังไม่มีข้อมูล</span></div>
+          </article>
+        </div>
+
+        <div class="encourage-card">
+          <div id="encourageIcon">🌱</div>
+          <div>
+            <small>KEEP LEARNING</small>
+            <h3 id="encourageTitle">ทุกความก้าวหน้าเริ่มต้นจากการลองทำ</h3>
+            <p id="encourageText">กลับไปเรียนบทที่ยังไม่มั่นใจ แล้วลองทำ Post-test อีกครั้งเพื่อดูพัฒนาการ</p>
+          </div>
+          <button class="primary" onclick="goPage('learn',document.querySelector('[data-page=&quot;learn&quot;]'))">กลับไปเรียน</button>
+        </div>
+
+        <div class="report-actions">
+          <div class="email-report">
+            <h3>📩 Email Report Preview</h3>
+            <p id="emailReport">ยังไม่มีข้อมูลครบ</p>
+            <button class="secondary" onclick="mockSendEmail()">จำลองส่งรายงาน</button>
+            <div id="sendStatus"></div>
+          </div>
+          <div id="history" class="attempt-history"></div>
+        </div>
+      </section>
+
+      <section id="settings" class="page hidden minimal-settings-page">
+        <div class="minimal-settings-wrap">
+          <section class="settings-logo-hero">
+            <div class="settings-logo-box">
+              <img src="zupports-logo.png" alt="โลโก้ ZUPPORTS">
+            </div>
+            <div class="settings-hero-copy">
+              <span class="eyebrow">ACCOUNT SETTINGS</span>
+              <h2>ตั้งค่าบัญชีผู้เรียน</h2>
+              <p>จัดการข้อมูลส่วนตัว การใช้งาน ความปลอดภัย และข้อมูลบัญชีได้จากหน้านี้</p>
+            </div>
+            <div class="logged-user">
+              <small>ผู้ใช้งานปัจจุบัน</small>
+              <b id="settingsLoggedName">ผู้เรียน</b>
+            </div>
+          </section>
+
+          <section class="simple-settings-card" id="personalInfoCard">
+            <div class="simple-card-head">
+              <div class="simple-card-icon">👤</div>
+              <div>
+                <h3>ข้อมูลส่วนตัว</h3>
+                <p>แก้ไขข้อมูลที่ใช้ภายในบัญชีของคุณ</p>
+              </div>
+            </div>
+            
+            <div class="profile-image-section">
+              <div class="profile-image-left">
+                <div class="profile-avatar-wrap">
+                  <img id="profilePreview" alt="รูปโปรไฟล์">
+                  <div id="profilePlaceholder" class="profile-placeholder">👤</div>
+                  <label class="profile-camera-btn" title="เปลี่ยนรูป">
+                    📷
+                    <input id="profileImageInput" type="file" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp" onchange="handleProfileImageSelect(event)">
+                  </label>
+                </div>
+                <div>
+                  <h4>รูปโปรไฟล์</h4>
+                  <p>รองรับไฟล์ JPG, JPEG, PNG และ WEBP ขนาดไม่เกิน 2 MB</p>
+                </div>
+              </div>
+              <div class="profile-image-actions">
+                <button class="secondary subtle-ripple" onclick="document.getElementById('profileImageInput').click()">อัปโหลดรูปภาพ</button>
+                <button class="secondary subtle-ripple" onclick="removeProfilePreview()">ลบรูปภาพ</button>
+                <button class="secondary subtle-ripple" onclick="restoreDefaultProfile()">ใช้รูปเริ่มต้น</button>
+              </div>
+            </div>
+
+            <div class="simple-form-grid">
+              <label class="minimal-floating-field">
+                <input id="settingName" type="text" placeholder=" ">
+                <span>ชื่อ</span>
+              </label>
+              <label class="minimal-floating-field">
+                <input id="settingEmail" type="email" placeholder=" ">
+                <span>อีเมล</span>
+              </label>
+              <label class="minimal-floating-field">
+                <input id="settingPhone" type="tel" placeholder=" ">
+                <span>เบอร์โทรศัพท์</span>
+              </label>
+              <label class="minimal-floating-field">
+                <input id="settingOrganization" type="text" placeholder=" ">
+                <span>มหาวิทยาลัย / บริษัท</span>
+              </label>
+              <label class="minimal-floating-field full-row">
+                <textarea id="settingGoal" rows="3" placeholder=" "></textarea>
+                <span>เป้าหมายการเรียนรู้</span>
+              </label>
+            </div>
+            <div class="card-actions">
+              <button class="secondary subtle-ripple" onclick="cancelProfileChanges()">ยกเลิก</button>
+              <button class="primary subtle-ripple" onclick="saveMinimalSettings()">บันทึกการเปลี่ยนแปลง</button>
+            </div>
+          </section>
+
+          <section class="simple-settings-card">
+            <div class="simple-card-head">
+              <div class="simple-card-icon">⚙️</div>
+              <div>
+                <h3>การตั้งค่าการใช้งาน</h3>
+                <p>กำหนดรูปแบบการใช้งานที่เหมาะกับคุณ</p>
+              </div>
+            </div>
+            <div class="simple-setting-list">
+              <div class="setting-row">
+                <div>
+                  <b>ภาษา</b>
+                  <small>เลือกรูปแบบภาษาที่ต้องการแสดง</small>
+                </div>
+                <select id="settingLanguage">
+                  <option value="th">ภาษาไทย</option>
+                  <option value="en">English</option>
+                  <option value="both">ไทย + English</option>
+                </select>
+              </div>
+              <label class="setting-row">
+                <div>
+                  <b>Animation</b>
+                  <small>เปิดหรือปิดภาพเคลื่อนไหวในบทเรียน</small>
+                </div>
+                <input id="prefAnimation" class="ios-switch" type="checkbox" checked>
+              </label>
+              <label class="setting-row">
+                <div>
+                  <b>การแจ้งเตือนทางอีเมล</b>
+                  <small>รับข้อมูลสรุปผลการเรียนทางอีเมล</small>
+                </div>
+                <input id="prefEmailNotification" class="ios-switch" type="checkbox">
+              </label>
+              <label class="setting-row">
+                <div>
+                  <b>เตือนทำแบบทดสอบ</b>
+                  <small>แจ้งเตือนให้กลับมาทำ Pre-test หรือ Post-test</small>
+                </div>
+                <input id="prefQuizReminder" class="ios-switch" type="checkbox" checked>
+              </label>
+            </div>
+          </section>
+
+          <section class="simple-settings-card">
+            <div class="simple-card-head">
+              <div class="simple-card-icon">🔒</div>
+              <div>
+                <h3>ความปลอดภัย</h3>
+                <p>ดูแลการเข้าถึงบัญชีและอุปกรณ์ของคุณ</p>
+              </div>
+            </div>
+            <div class="action-list">
+              <button onclick="showMinimalToast('เปิดหน้าต่างเปลี่ยนรหัสผ่านแล้ว')">
+                <span><b>เปลี่ยนรหัสผ่าน</b><small>อัปเดตรหัสผ่านเพื่อความปลอดภัย</small></span><i>›</i>
+              </button>
+              <button onclick="showMinimalToast('กำลังแสดงอุปกรณ์ที่เข้าสู่ระบบ')">
+                <span><b>จัดการอุปกรณ์ที่เข้าสู่ระบบ</b><small>ตรวจสอบและออกจากระบบอุปกรณ์ที่ไม่รู้จัก</small></span><i>›</i>
+              </button>
+              <button onclick="showMinimalToast('กำลังแสดงประวัติการเข้าสู่ระบบ')">
+                <span><b>ประวัติการเข้าสู่ระบบ</b><small>ดูเวลาการเข้าสู่ระบบล่าสุดแบบไม่เปิดเผยข้อมูลส่วนตัว</small></span><i>›</i>
+              </button>
+            </div>
+          </section>
+
+          <section class="simple-settings-card">
+            <div class="simple-card-head">
+              <div class="simple-card-icon">📊</div>
+              <div>
+                <h3>ความสมบูรณ์ของบัญชี</h3>
+                <p>เพิ่มข้อมูลให้ครบเพื่อใช้งานระบบได้สะดวกขึ้น</p>
+              </div>
+              <strong id="minimalCompletionText">0%</strong>
+            </div>
+            <div class="completion-bar"><i id="minimalCompletionBar"></i></div>
+            <p id="minimalCompletionHint" class="completion-hint">กรอกข้อมูลส่วนตัวเพื่อเพิ่มความสมบูรณ์ของบัญชี</p>
+          </section>
+
+          <section class="simple-settings-card">
+            <div class="simple-card-head">
+              <div class="simple-card-icon">☁️</div>
+              <div>
+                <h3>บัญชีและข้อมูล</h3>
+                <p>จัดการข้อมูลการเรียนและการออกจากระบบ</p>
+              </div>
+            </div>
+            <div class="action-list">
+              <button onclick="exportLearningData()">
+                <span><b>ดาวน์โหลดข้อมูลของฉัน</b><small>ดาวน์โหลดข้อมูลบัญชีและประวัติการเรียน</small></span><i>›</i>
+              </button>
+              <button onclick="backupMinimalData()">
+                <span><b>สำรองข้อมูล</b><small>บันทึกข้อมูลล่าสุดไว้ในอุปกรณ์นี้</small></span><i>›</i>
+              </button>
+              <button onclick="openConfirmModal('logout')">
+                <span><b>ออกจากระบบ</b><small>ออกจากบัญชีนี้บนอุปกรณ์ปัจจุบัน</small></span><i>›</i>
+              </button>
+            </div>
+          </section>
+
+          <section class="danger-minimal-card">
+            <div>
+              <div class="simple-card-icon danger-icon">⚠️</div>
+              <div>
+                <h3>Danger Zone</h3>
+                <p>การลบบัญชีจะลบข้อมูลที่เก็บไว้ในอุปกรณ์นี้</p>
+              </div>
+            </div>
+            <button onclick="openConfirmModal('delete-account')">ลบบัญชีผู้ใช้</button>
+          </section>
+        </div>
+
+        <div id="minimalToast" class="minimal-toast"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="loginModal" class="modal hidden">
+    <div class="modal-card">
+      <button class="close" onclick="closeLogin()">×</button>
+      <img src="zupports-logo.png" alt="ZUPPORTS" />
+      <h2>เข้าสู่ระบบผู้เรียน</h2>
+      <input id="loginEmail" type="email" placeholder="you@example.com" />
+      <input id="loginName" type="text" placeholder="ชื่อผู้เรียน" />
+      <button class="primary full" onclick="saveLogin()">เข้าสู่ระบบและเริ่ม Pre-test</button>
+      <small>Prototype นี้เก็บข้อมูลในอุปกรณ์ และยังไม่ส่ง Email จริง</small>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
